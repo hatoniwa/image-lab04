@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>分散データ・再生プレイヤー</title>
+<style>
+  :root { --stage-size: 320px; }
+  body { text-align:center; font-family:serif; background:#111; color:#fff; padding:20px; }
+  
+  #stage {
+    position:relative; width: var(--stage-size); height: var(--stage-size);
+    margin: 20px auto; border: 2px solid #444; background:#000; overflow:hidden;
+    perspective: 1000px;
+  }
+  .piece {
+    position:absolute; background-size: var(--stage-size) var(--stage-size);
+    /* スピードはJSから動的に変更します */
+    transition: all 1.0s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .controls { background: #222; padding: 15px; border-radius: 10px; display: inline-block; }
+  textarea { width: 90%; height: 80px; background:#000; color:#0f0; border:1px solid #444; font-family:monospace; margin-top:10px; }
+  
+  .slider-box { margin: 10px 0; font-size: 14px; color: #aaa; }
+  input[type="range"] { width: 200px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<h3>🎭 分散コード再生システム</h3>
+
+<div class="controls">
+  画像: <select id="imgPicker">
+    <option value="A01.jpg">A01.jpg</option>
+    <option value="A02.jpg">A02.jpg</option>
+    <option value="A03.jpg">A03.jpg</option>
+    <option value="A01.jpg">A04.jpg</option>
+    <option value="A02.jpg">A05.jpg</option>
+    <option value="A03.jpg">A06.jpg</option>
+    <option value="A01.jpg">A07.jpg</option>
+    <option value="A02.jpg">A08.jpg</option>  
+  </select>
+
+  <div class="slider-box">
+    再生スピード: <input type="range" id="speedRange" min="0.1" max="5.0" step="0.1" value="1.5">
+    <span id="speedVal">1.5</span>秒
+  </div>
+
+  <textarea id="dataInput" placeholder="ここに分散コード（JSON）を貼り付けてください"></textarea>
+  <br>
+  <button onclick="playData()" style="padding:10px 25px; background:#e91e63; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; margin-top:10px;">✨ 収束・再生開始</button>
+</div>
+
+<div id="stage"></div>
+
+<script>
+const COLS = 4; const ROWS = 4; const SIZE = 320;
+const PW = SIZE / COLS; const PH = SIZE / ROWS;
+const stage = document.getElementById("stage");
+const speedRange = document.getElementById("speedRange");
+const speedVal = document.getElementById("speedVal");
+
+// スピード表示の更新
+speedRange.oninput = () => { speedVal.textContent = speedRange.value; };
+
+function playData() {
+  const jsonText = document.getElementById("dataInput").value;
+  const imgUrl = document.getElementById("imgPicker").value;
+  let parsedData;
+
+  try {
+    parsedData = JSON.parse(jsonText);
+  } catch(e) {
+    alert("データ形式が正しくありません。JSONコードを確認してください。");
+    return;
+  }
+
+  // 1. ステージ初期化
+  stage.innerHTML = "";
+  const duration = speedRange.value;
+
+  // 2. ピース生成（分散状態で配置）
+  for(let i=0; i<COLS*ROWS; i++){
+    const col=i%COLS; const row=Math.floor(i/COLS);
+    const x=col*PW; const y=row*PH;
+    const p = document.createElement("div");
+    p.className = "piece";
+    p.style.width=PW+"px"; p.style.height=PH+"px";
+    p.style.left=x+"px"; p.style.top=y+"px";
+    p.style.backgroundImage=`url(${imgUrl})`;
+    p.style.backgroundPosition=`-${x}px -${y}px`;
+    
+    // データに基づいた初期の「分散状態」を適用（アニメーションなし）
+    p.style.transition = "none";
+    p.style.transform = parsedData[i].transform;
+    p.style.opacity = parsedData[i].opacity;
+
+    stage.appendChild(p);
+
+    // 3. 少し遅らせて「収束」を開始
+    setTimeout(() => {
+      p.style.transition = `all ${duration}s cubic-bezier(0.2, 0.8, 0.2, 1)`;
+      p.style.transform = "translate(0,0) rotate(0deg) scale(1)";
+      p.style.opacity = "1";
+    }, 50 + i * 20); // わずかな時間差でバラバラ感を出す
+  }
+}
+</script>
+</body>
+</html>
