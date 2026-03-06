@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>400分割・自動変身サイクル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { margin: 0; background: #111; color: white; font-family: sans-serif; text-align: center; overflow-x: hidden; }
+  #menu { padding: 15px; }
+  button { padding: 12px 24px; margin: 8px; font-size: 16px; cursor: pointer; border-radius: 30px; border: none; background: #007bff; color: white; transition: 0.3s; }
+  button:hover { background: #0056b3; transform: scale(1.05); }
+
+  #game-container {
+    width: 90vw;
+    max-width: 500px;
+    aspect-ratio: 1/1;
+    margin: 20px auto;
+    position: relative;
+    border: 4px solid #333;
+    background-size: cover;
+    background-position: center;
+    display: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+
+  .piece {
+    position: absolute;
+    transition: opacity 0.8s, transform 0.8s;
+    cursor: pointer;
+  }
+
+  .piece.hide {
+    opacity: 0;
+    transform: scale(0.2) rotate(90deg);
+  }
+
+  #revealBtn { display: none; margin: 20px; background: #28a745; }
+
+  #recordArea {
+    width: 90%;
+    max-width: 500px;
+    height: 140px;
+    background: #000;
+    color: #00ff88;
+    margin-top: 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .controls { margin-top: 15px; }
+</style>
+</head>
+<body>
+
+<div id="menu">
+  <h2>魔法の変身パネル</h2>
+  <button onclick="startGame('A01.jpg', 'A02.jpg')">A01 → A02</button>
+  <button onclick="startGame('A03.jpg', 'A04.jpg')">A03 → A04</button>
+  <button onclick="startGame('A05.jpg', 'A06.jpg')">A05 → A06</button>
+</div>
+
+<div id="game-container"></div>
+
+<button id="revealBtn" onclick="revealAll()">一斉に変身！</button>
+
+<div class="controls">
+  <button onclick="captureState()">分散状態を記録</button>
+  <button onclick="reverseReveal()">スロー逆再生</button>
+  <br>
+
+
+
+
+
+  逆再生スピード：
+  <input type="range" id="speedSlider" min="0.2" max="3" step="0.1" value="1">
+  <span id="speedLabel">1.0×</span>
+  <br>
+  <textarea id="    
+
+
+
+
+[
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  },
+  {
+    "hidden": false
+  }
+]
+
+
+
+
+
+
+  "></textarea>
+</div>
+
+<script>
+const container = document.getElementById("game-container");
+const revealBtn = document.getElementById("revealBtn");
+const size = 20;
+
+let recordedState = null;
+let reverseSpeed = 1;
+
+const slider = document.getElementById("speedSlider");
+const speedLabel = document.getElementById("speedLabel");
+
+slider.addEventListener("input", () => {
+  reverseSpeed = parseFloat(slider.value);
+  speedLabel.textContent = reverseSpeed.toFixed(1) + "×";
+});
+
+function startGame(beforeImg, afterImg) {
+  container.innerHTML = "";
+  container.style.display = "block";
+  revealBtn.style.display = "inline-block";
+  container.style.backgroundImage = `url(${afterImg})`;
+
+  const containerSize = container.offsetWidth;
+  const pieceSize = containerSize / size;
+
+  for(let y=0; y<size; y++) {
+    for(let x=0; x<size; x++) {
+      const piece = document.createElement("div");
+      piece.className = "piece";
+      piece.style.width = pieceSize + "px";
+      piece.style.height = pieceSize + "px";
+      piece.style.left = (x * pieceSize) + "px";
+      piece.style.top = (y * pieceSize) + "px";
+
+      piece.style.backgroundImage = `url(${beforeImg})`;
+      piece.style.backgroundSize = `${containerSize}px ${containerSize}px`;
+      piece.style.backgroundPosition = `-${x * pieceSize}px -${y * pieceSize}px`;
+
+      piece.onclick = () => piece.classList.add("hide");
+      container.appendChild(piece);
+    }
+  }
+}
+
+function revealAll() {
+  const pieces = document.querySelectorAll('.piece');
+  pieces.forEach((piece, index) => {
+    setTimeout(() => {
+      piece.classList.add("hide");
+    }, index * 2);
+  });
+}
+
+function captureState(){
+  const pieces = document.querySelectorAll('.piece');
+
+  recordedState = Array.from(pieces).map(p => ({
+    hidden: p.classList.contains("hide")
+  }));
+
+  document.getElementById("recordArea").value =
+    JSON.stringify(recordedState, null, 2);
+}
+
+function reverseReveal(){
+  if(!recordedState){
+    alert("先に分散状態を記録してください");
+    return;
+  }
+
+  const pieces = document.querySelectorAll('.piece');
+
+  pieces.forEach((piece, index) => {
+    const delay = index * (25 / reverseSpeed);
+
+    setTimeout(() => {
+      if(recordedState[index].hidden){
+        piece.classList.add("hide");
+      } else {
+        piece.classList.remove("hide");
+      }
+    }, delay);
+  });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    font-family: "Hiragino Sans", "Meiryo", sans-serif;
+    background: transparent;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .panel {
+    max-width: 420px;
+    margin: auto;
+    background: #ffffff;
+    border: 1px solid #e3e8ef;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  }
+
+  h2 {
+    color: #1f2d3d;
+    font-size: 18px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #2c3e50;
+    display: inline-block;
+    padding-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .step-box {
+    text-align: left;
+    background: #f5f7fa;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+  }
+
+  .step-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 8px;
+    border: 1px solid #dcdfe6;
+    padding: 10px;
+    font-size: 11px;
+    background: #ffffff;
+    font-family: monospace;
+    color: #555;
+    resize: none;
+    box-sizing: border-box;
+  }
+
+  .copy-btn {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 12px;
+    transition: 0.2s;
+  }
+
+  .copy-btn:hover {
+    background: #1a252f;
+  }
+
+  .go-btn {
+    display: block;
+    width: 100%;
+    margin-top: 26px;
+    background: #c0392b;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: 0.2s;
+  }
+
+  .go-btn:hover {
+    background: #922b21;
+  }
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <h2>第4回：画像分散データ収束プロトコル</h2>
+
+
+
+
+<div id="controls">
+  <select id="imgSelect" class="img-select" onchange="init()">
+    <option value="A01.jpg">Image A01</option>
+    <option value="A02.jpg">Image A02</option>
+    <option value="A03.jpg">Image A03</option>
+    <option value="A04.jpg">Image A04</option>
+    <option value="A05.jpg">Image A05</option>
+    <option value="A06.jpg">Image A06</option>
+    <option value="A07.jpg">Image A07</option>
+    <option value="A08.jpg">Image A08</option>
+  </select>
+
+
+
+
+  <div class="step-box">
+    <span class="step-title">STEP 1：分散データ取得</span>
+    <p class="step-desc">
+      下のボタンを押して、分散状態の画像設計データを取得してください。
+      このデータは収束処理に使用します。
+    </p>
+
+
+
+    <textarea id="dataA" readonly>
+
+
+[
+  {
+    "index": 0,
+    "transform": "matrix(1.4, 0, 0, 1.4, 120, 120)",
+    "opacity": "1"
+  },
+  {
+    "index": 1,
+    "transform": "matrix(1.4, 0, 0, 1.4, 40, 120)",
+    "opacity": "1"
+  },
+  {
+    "index": 2,
+    "transform": "matrix(1.4, 0, 0, 1.4, -40, 120)",
+    "opacity": "1"
+  },
+  {
+    "index": 3,
+    "transform": "matrix(1.4, 0, 0, 1.4, -120, 120)",
+    "opacity": "1"
+  },
+  {
+    "index": 4,
+    "transform": "matrix(1.4, 0, 0, 1.4, 120, 40)",
+    "opacity": "1"
+  },
+  {
+    "index": 5,
+    "transform": "matrix(1.4, 0, 0, 1.4, 40, 40)",
+    "opacity": "1"
+  },
+  {
+    "index": 6,
+    "transform": "matrix(1.4, 0, 0, 1.4, -40, 40)",
+    "opacity": "1"
+  },
+  {
+    "index": 7,
+    "transform": "matrix(1.4, 0, 0, 1.4, -120, 40)",
+    "opacity": "1"
+  },
+  {
+    "index": 8,
+    "transform": "matrix(1.4, 0, 0, 1.4, 120, -40)",
+    "opacity": "1"
+  },
+  {
+    "index": 9,
+    "transform": "matrix(1.4, 0, 0, 1.4, 40, -40)",
+    "opacity": "1"
+  },
+  {
+    "index": 10,
+    "transform": "matrix(1.4, 0, 0, 1.4, -40, -40)",
+    "opacity": "1"
+  },
+  {
+    "index": 11,
+    "transform": "matrix(1.4, 0, 0, 1.4, -120, -40)",
+    "opacity": "1"
+  },
+  {
+    "index": 12,
+    "transform": "matrix(1.4, 0, 0, 1.4, 120, -120)",
+    "opacity": "1"
+  },
+  {
+    "index": 13,
+    "transform": "matrix(1.4, 0, 0, 1.4, 40, -120)",
+    "opacity": "1"
+  },
+  {
+    "index": 14,
+    "transform": "matrix(1.4, 0, 0, 1.4, -40, -120)",
+    "opacity": "1"
+  },
+  {
+    "index": 15,
+    "transform": "matrix(1.4, 0, 0, 1.4, -120, -120)",
+    "opacity": "1"
+  }
+]
+
+
+
+
+
+
+
+
+    </textarea>
+
+    <button class="copy-btn" onclick="copyData('dataA')">
+      分散データをコピー
+    </button>
+  </div>
+
+  <div class="step-box" style="background:#fff3f2;">
+    <span class="step-title" style="color:#c0392b;">
+      STEP 2：収束処理環境へ移動
+    </span>
+    <p class="step-desc">
+      コピー完了後、下のボタンから収束処理ページへ移動し、
+      データを貼り付けて実行してください。
+    </p>
+
+
+
+    <a href="https://hatoniwa.github.io/image-lab04/8p_index.html" target="_blank" class="go-btn">
+      収束環境へ移動
+    </a>
+  </div>
+</div>
+
+<script>
+  function copyData(id) {
+    const txt = document.getElementById(id);
+    txt.select();
+    document.execCommand('copy');
+    alert('分散データをコピーしました。\n収束処理環境へ移動してください。');
+  }
+</script>
+
+</body>
+</html>
